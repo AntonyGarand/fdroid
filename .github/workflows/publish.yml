@@ -55,9 +55,11 @@ jobs:
 
       - name: Assemble site
         run: |
+          # Repo files at the root so the address is just https://fdroid.garand.dev; site/ goes on top
+          # (its index.html replaces fdroid's generated one).
           mkdir _site
+          cp -r repo/. _site/
           cp -r site/. _site/
-          cp -r repo _site/repo
           if [ -d archive ]; then cp -r archive _site/archive; fi
       - uses: actions/upload-pages-artifact@v4
         with:

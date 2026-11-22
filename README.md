@@ -1,10 +1,8 @@
 # fdroid.garand.dev
 
-A self-hosted [F-Droid](https://f-droid.org) repository for garand.dev apps. Add it to any F-Droid client:
-
-```
-https://fdroid.garand.dev/repo?fingerprint=628645046A543FDA62129032FE021D780B76ACF62548C6F25E0584134A59B04F
-```
+A self-hosted [F-Droid](https://f-droid.org) repository for garand.dev apps. Add `fdroid.garand.dev` in any F-Droid client.
+The client trusts the key it sees on first use. To pin it up front:
+`https://fdroid.garand.dev?fingerprint=628645046A543FDA62129032FE021D780B76ACF62548C6F25E0584134A59B04F`
 
 ## How it works
 
@@ -12,7 +10,7 @@ https://fdroid.garand.dev/repo?fingerprint=628645046A543FDA62129032FE021D780B76A
 
 1. Downloads the APKs from the last 5 GitHub releases of each repo in `sources.txt`. Each app's own release key has already signed them.
 2. Runs `fdroid update` (fdroidserver), which reads `metadata/<package id>.yml` and builds and signs the index with the repo key.
-3. Deploys `site/` (landing page, CNAME) + `repo/` to GitHub Pages.
+3. Deploys `repo/` at the site root, with `site/` (landing page, CNAME) on top, to GitHub Pages.
 
 Nothing built is committed: `repo/` is regenerated on every run.
 
