@@ -1,0 +1,6 @@
+# Built by the workflow; APKs come from the app repos' GitHub releases.
+repo/*
+archive/
+tmp/
+fdroid-keystore.p12
+*.jks

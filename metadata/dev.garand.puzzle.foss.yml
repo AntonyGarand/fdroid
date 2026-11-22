@@ -1,0 +1,24 @@
+Categories:
+  - Games
+License: MIT
+AuthorName: Antony Garand
+AuthorWebSite: https://garand.dev
+WebSite: https://puzzle.garand.dev
+SourceCode: https://github.com/AntonyGarand/puzzle-feed
+IssueTracker: https://github.com/AntonyGarand/puzzle-feed/issues
+Changelog: https://github.com/AntonyGarand/puzzle-feed/releases
+
+AntiFeatures:
+  Tracking:
+    en-US: Sends anonymous play stats (game, level, time, result) and page visits. On by default; turn it off in Settings.
+
+Name: puzzle feed
+Summary: An endless feed of procedurally generated puzzles
+Description: |-
+  An endless, scrollable feed of procedurally generated puzzles: logic, word, number and card games, in English and French.
+
+  * Difficulty adapts to how you play, per game.
+  * Daily challenges, streaks and stats.
+  * Works fully offline, no account. Progress stays on your device.
+
+  Same game as https://puzzle.garand.dev, bundled into the app.

@@ -1,0 +1,2 @@
+# GitHub repos whose releases carry signed APKs. One owner/repo per line.
+AntonyGarand/puzzle-feed

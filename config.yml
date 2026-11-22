@@ -1,0 +1,17 @@
+# fdroidserver config for https://fdroid.garand.dev. Secrets come from the environment (see the workflow).
+repo_url: https://fdroid.garand.dev/repo
+repo_name: garand.dev
+repo_icon: icon.png # copied into repo/icons/
+repo_description: >-
+  Apps by Antony Garand (garand.dev). Built and signed from the GitHub releases of each app.
+archive_older: 5
+
+repo_keyalias: repokey
+keystore: fdroid-keystore.p12
+keystorepass:
+  env: FDROID_KEYSTORE_PASSWORD
+keypass:
+  env: FDROID_KEYSTORE_PASSWORD
+keydname: CN=fdroid.garand.dev, O=garand.dev, C=CA
+
+make_current_version_link: false

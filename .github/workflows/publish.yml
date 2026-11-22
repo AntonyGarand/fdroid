@@ -1,0 +1,74 @@
+name: Publish repo
+
+# Rebuilds the F-Droid index from the latest GitHub releases listed in sources.txt and deploys it
+# to https://fdroid.garand.dev (GitHub Pages). Runs every 6 hours, on push, or on demand after a release.
+
+on:
+  schedule:
+    - cron: '17 */6 * * *'
+  workflow_dispatch:
+  repository_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - run: pip install fdroidserver==2.4.5
+      - name: apksigner on PATH
+        run: echo "$ANDROID_HOME/build-tools/$(ls "$ANDROID_HOME/build-tools" | sort -V | tail -1)" >> "$GITHUB_PATH"
+
+      - name: Download APKs (last 5 releases per app)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p repo
+          grep -v '^#' sources.txt | while read -r src; do
+            [ -n "$src" ] || continue
+            gh release list --repo "$src" --limit 5 --exclude-drafts --exclude-pre-releases --json tagName -q '.[].tagName' |
+              while read -r tag; do gh release download "$tag" --repo "$src" --pattern '*.apk' --dir repo --skip-existing; done
+          done
+          ls -l repo
+
+      - name: Build and sign the index
+        env:
+          FDROID_KEYSTORE_PASSWORD: ${{ secrets.FDROID_KEYSTORE_PASSWORD }}
+        run: |
+          echo "${{ secrets.FDROID_KEYSTORE_B64 }}" | base64 -d > fdroid-keystore.p12
+          chmod 600 config.yml fdroid-keystore.p12
+          fdroid update --pretty
+          rm fdroid-keystore.p12
+
+      - name: Assemble site
+        run: |
+          mkdir _site
+          cp -r site/. _site/
+          cp -r repo _site/repo
+          if [ -d archive ]; then cp -r archive _site/archive; fi
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
