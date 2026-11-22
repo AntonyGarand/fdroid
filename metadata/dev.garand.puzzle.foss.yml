@@ -12,7 +12,7 @@ AntiFeatures:
   Tracking:
     en-US: Sends anonymous play stats (game, level, time, result) and page visits. On by default; turn it off in Settings.
 
-Name: puzzle feed
+Name: Puzzle Feed
 Summary: An endless feed of procedurally generated puzzles
 Description: |-
   An endless, scrollable feed of procedurally generated puzzles: logic, word, number and card games, in English and French.
