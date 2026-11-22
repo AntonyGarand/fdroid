@@ -55,9 +55,10 @@ jobs:
 
       - name: Assemble site
         run: |
-          # Repo files at the root so the address is just https://fdroid.garand.dev; site/ goes on top
-          # (its index.html replaces fdroid's generated one).
+          # The repo lives at /repo (fdroidserver insists) and is copied to the root too, so users can
+          # add just https://fdroid.garand.dev. site/ goes on top (its index.html replaces fdroid's).
           mkdir _site
+          cp -r repo _site/repo
           cp -r repo/. _site/
           cp -r site/. _site/
           if [ -d archive ]; then cp -r archive _site/archive; fi

@@ -1,7 +1,7 @@
 # fdroidserver config for https://fdroid.garand.dev. Secrets come from the environment (see the workflow).
-# Served from the site root (the workflow copies repo/ to /), so users can add just fdroid.garand.dev.
-repo_url: https://fdroid.garand.dev
-archive_url: https://fdroid.garand.dev/archive
+# fdroidserver requires the /repo suffix. The workflow also copies the repo to the site root, so users
+# can add just fdroid.garand.dev.
+repo_url: https://fdroid.garand.dev/repo
 repo_name: garand.dev
 repo_icon: icon.png # copied into repo/icons/
 repo_description: >-

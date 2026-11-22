@@ -10,7 +10,7 @@ The client trusts the key it sees on first use. To pin it up front:
 
 1. Downloads the APKs from the last 5 GitHub releases of each repo in `sources.txt`. Each app's own release key has already signed them.
 2. Runs `fdroid update` (fdroidserver), which reads `metadata/<package id>.yml` and builds and signs the index with the repo key.
-3. Deploys `repo/` at the site root, with `site/` (landing page, CNAME) on top, to GitHub Pages.
+3. Deploys `repo/` to GitHub Pages at both `/repo` (the address fdroidserver requires) and the root, so `fdroid.garand.dev` works on its own. `site/` (landing page, CNAME) goes on top.
 
 Nothing built is committed: `repo/` is regenerated on every run.
 
