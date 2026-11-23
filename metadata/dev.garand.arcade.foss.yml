@@ -1,0 +1,24 @@
+Categories:
+  - Games
+License: MIT
+AuthorName: Antony Garand
+AuthorWebSite: https://garand.dev
+WebSite: https://arcade.garand.dev
+SourceCode: https://github.com/AntonyGarand/arcade-feed
+IssueTracker: https://github.com/AntonyGarand/arcade-feed/issues
+Changelog: https://github.com/AntonyGarand/arcade-feed/releases
+
+AntiFeatures:
+  Tracking:
+    en-US: Sends anonymous play stats (game, level, score, time, result) and page visits. On by default; turn it off in Settings.
+
+Name: Arcade Feed
+Summary: An endless feed of one-level arcade games
+Description: |-
+  An endless, scrollable feed of one-level arcade games: swap, bounce, dodge and aim. In English and French.
+
+  * Each card is a short level scored with stars. Difficulty adapts to how you play, per game.
+  * Profile with stats and best scores.
+  * Works fully offline, no account, no ads. Progress stays on your device.
+
+  Same games as https://arcade.garand.dev, bundled into the app.
